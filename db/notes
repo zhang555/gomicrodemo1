@@ -1,0 +1,23 @@
+
+mysqldump -uroot -p micro > micro.sql
+
+
+DROP database IF EXISTS `micro`;
+create database micro;
+use micro;
+
+
+ERROR: ASCII '\0' appeared in the statement, but this is not allowed unless option --binary-mode is enabled and mysql is run in non-interactive mode. Set --binary-mode to 1 if ASCII '\0' is expected. Query: '��-'.
+使用windows的 powershell ，执行 mysqldump命令，导出的文件，字符集不是utf-8，导致docker容器执行失败 报错。
+换回 cmd 即可，
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,79 @@
+version: '3'
+
+services:
+  db:
+    build: ./db
+    ports:
+      - 3336:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: 88886666
+    networks:
+      net:
+        ipv4_address: 10.0.0.200
+
+  f:
+    build: ./gomicrofront
+    ports:
+      - 80:80
+    networks:
+      net:
+#        ipv4_address: 10.0.0.200
+
+  b-user:
+    build: ./src/user-service
+    depends_on:
+      - db
+    environment:
+      DB_HOST: 10.0.0.200
+      DB_PASSWORD: 88886666
+#      DB_PORT: 3336
+      MICRO_REGISTRY: mdns
+    networks:
+      net:
+#        ipv4_address: 10.0.0.200
+
+  b-article:
+    build: ./src/article-service
+    depends_on:
+      - db
+    environment:
+      DB_HOST: 10.0.0.200
+      DB_PASSWORD: 88886666
+#      DB_PORT: 3336
+      MICRO_REGISTRY: mdns
+    networks:
+      net:
+#        ipv4_address: 10.0.0.200
+
+  b-message:
+    build: ./src/message-service
+    depends_on:
+      - db
+    environment:
+      DB_HOST: 10.0.0.200
+      DB_PASSWORD: 88886666
+#      DB_PORT: 3336
+      MICRO_REGISTRY: mdns
+    networks:
+      net:
+#        ipv4_address: 10.0.0.200
+
+  b-api:
+    build: ./src/microapi
+    ports:
+      - 8228:8228
+    command: ["api", "--handler=rpc", "--address=:8228", "--namespace=gomicrodemo1" ,"--cors=*"]
+    environment:
+      MICRO_REGISTRY: mdns
+    networks:
+      net:
+#        ipv4_address: 10.0.0.200
+
+networks:
+  net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.0.0.0/8
+

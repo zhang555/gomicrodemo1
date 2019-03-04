@@ -1,0 +1,19 @@
+.el-table th {
+    /*background: #f4f4f4 !important;*/
+    background: #eef1f6 !important;
+
+    color: #1f2d3d;
+    /*font-size: large;*/
+}
+
+.el-table__body {
+    /*background: #f4f4f4 !important;*/
+    background: #eef1f6 !important;
+
+    color: #1f2d3d;
+    /*font-size: large;*/
+}
+
+
+
+

@@ -1,0 +1,50 @@
+
+一开始 front ， api  db 启动成功，  user service ， 没有反应，
+后来发现，user service 和它们不在同一个 network上，
+
+
+将所有network去掉，
+还是老问题，user service 没有找到
+
+{"id":"go.micro.client",
+"code":500,
+"detail":"error selecting go.micro.srv.user node: none available",
+"status":"Internal Server Error"}
+
+设置了同一个网络，但是没有私有ip 报错：
+user service error: No private IP address found, and explicit IP not provided
+貌似 还要设置环境变量，
+"10.0.0.0/8", "172.16.0.0/12", "192.168.0.0/16", "100.64.0.0/10"
+从源码看， 网段必须是这几个中的
+
+
+mysql -uroot --host=192.168.0.115 --port=3336 -p
+mysql -uroot --host=192.168.0.115 --port=3336 -p
+mysql -uroot --host=192.168.0.118 --port=3336 -p
+
+docker exec -it gomicrodemo1_db_1 sh
+docker exec -it gomicrodemo1_db_1 bash
+
+报错
+ERROR: Service 'web-backend-user-sevice' failed to build: Error processing tar file(exit status 1): write /vendor/golang.org/x/text/unicode/norm/tables9.0.0.go: no space left on device
+
+将权限改成 777 ， 没有作用，
+应该是docker 问题， 重启docker ， 没用，
+
+docker image prune ：删除 悬空镜像，  不能解决
+
+其实是 系统没有空间了
+
+
+在写 yaml时 ， 应该连 10.0.0.200:3306 ， 错写成了10.0.0.200:3336 ， 3336是 外部的，导致连不上数据库
+
+docker run 	-d 	--name=db1 	--rm 	-p 3336:3306 	-e MYSQL_ROOT_PASSWORD=88886666 		db
+
+很奇怪，在win上 不管是直接docker运行 还是 docker-compose运行 ， 都没问题，
+在centos上，  docker 运行可以， docker-compose运行 ，数据库密码错误，登陆不进去，
+因为centos 上 有老的container， 删除，重启启动 ，即可，
+
+
+
+
+

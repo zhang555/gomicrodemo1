@@ -1,0 +1,99 @@
+version: '3'
+
+services:
+  db:
+    build: ./db
+    ports:
+      - 3336:3306
+    networks:
+      gomicrowebNetwork:
+        ipv4_address: 188.188.0.101
+    environment:
+      MYSQL_ROOT_PASSWORD: ${dbpassword}
+
+
+  web-frontend:
+    build: ./gomicrofront
+    ports:
+      - 80:80
+    networks:
+      gomicrowebNetwork:
+#        ipv4_address: 188.188.0.102
+
+  web-backend-user-sevice:
+    build: ./src/user-service
+#    depends_on:
+#      - db
+    networks:
+      gomicrowebNetwork:
+        ipv4_address: 188.188.0.103
+    environment:
+      DB_HOST: 188.188.0.101
+      DB_PASSWORD: ${dbpassword}
+      MICRO_REGISTRY: mdns
+
+  web-backend-user-sevice:
+    build: ./src/user-service
+#    depends_on:
+#      - db
+    networks:
+      gomicrowebNetwork:
+        ipv4_address: 188.188.0.103
+    environment:
+      DB_HOST: 192.168.0.200
+      DB_PASSWORD: ${dbpassword}
+      DB_PORT: 3336
+      MICRO_REGISTRY: mdns
+
+#
+#  web-backend-article-service:
+#    build: ./src/article-service
+#    depends_on:
+#      - db
+#
+#    networks:
+#      gomicrowebNetwork:
+#        ipv4_address: 172.172.0.103
+#    environment:
+#      MONGODB_ADDR: mongodb://172.172.0.103:27017
+#
+#  web-backend-message-service:
+#    build: ./src/message-service
+#    depends_on:
+#      - db
+#
+#    networks:
+#      gomicrowebNetwork:
+#        ipv4_address: 172.172.0.103
+#    environment:
+#      MONGODB_ADDR: mongodb://172.172.0.103:27017
+
+
+#  web-backend-api:
+#    build: ./microapi
+#    networks:
+#      gomicrowebNetwork:
+#        ipv4_address: 188.188.0.111
+
+  web-backend-api:
+    build: ./src/microapi
+#    image: microhq/micro
+    ports:
+      - 8228:8228
+    command: ["--enable_stats","api", "--handler=rpc", "--address=:8228", "--namespace=gomicrodemo1" ,"--cors=http://localhost"]
+#    command: ["api", "--help",]
+    networks:
+      gomicrowebNetwork:
+        ipv4_address: 188.188.0.111
+    environment:
+      MICRO_REGISTRY: mdns
+
+
+networks:
+  gomicrowebNetwork:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 188.188.0.0/16
+

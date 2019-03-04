@@ -1,0 +1,56 @@
+version: '3'
+
+services:
+  db:
+    build: ./db
+    ports:
+      - 3336:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: ${dbpassword}
+
+  web-frontend:
+    build: ./gomicrofront
+    ports:
+      - 81:80
+
+  web-backend-user-sevice:
+    build: ./src/user-service
+#    depends_on:
+#      - db
+    environment:
+      DB_HOST: 192.168.0.200
+      DB_PASSWORD: ${dbpassword}
+      DB_PORT: 3336
+      MICRO_REGISTRY: mdns
+
+  web-backend-article-service:
+    build: ./src/article-service
+#    depends_on:
+#      - db
+    environment:
+      DB_HOST: 192.168.0.200
+      DB_PASSWORD: ${dbpassword}
+      DB_PORT: 3336
+      MICRO_REGISTRY: mdns
+
+
+  web-backend-message-service:
+    build: ./src/message-service
+#    depends_on:
+#      - db
+    environment:
+      DB_HOST: 192.168.0.200
+      DB_PASSWORD: ${dbpassword}
+      DB_PORT: 3336
+      MICRO_REGISTRY: mdns
+
+  web-backend-api:
+    build: ./src/microapi
+    ports:
+      - 8228:8228
+#    command: ["--enable_stats","api", "--handler=rpc", "--address=:8228", "--namespace=gomicrodemo1" ,"--cors=http://localhost"]
+#    command: ["--enable_stats","api", "--handler=rpc", "--address=:8228", "--namespace=gomicrodemo1" ,"--cors=*"]
+    command: ["api", "--handler=rpc", "--address=:8228", "--namespace=gomicrodemo1" ,"--cors=*"]
+    environment:
+      MICRO_REGISTRY: mdns
+

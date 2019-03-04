@@ -1,0 +1,1 @@
+protoc -IC:\MyInstall\code\gomicrodemo1\src\message-service\proto\message --go_out=plugins=micro:C:\MyInstall\code\gomicrodemo1\src\message-service\proto\message C:\MyInstall\code\gomicrodemo1\src\message-service\proto\message\message.proto

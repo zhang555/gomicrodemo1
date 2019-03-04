@@ -1,0 +1,21 @@
+因为  microhq/micro 这个镜像中的 micro 命令 版本较低， 没有支持 --cors 参数
+所以要自己制作镜像，
+
+把micro命令放进去还不行， 报错：
+docker: Error response from daemon: OCI runtime create failed: container_linux.go:344: starting container process caused "exec: \"api\": executable file not found in $PATH": unknown.
+
+把 dockerfile 中的 cmd [] 改成 entrypoint [] 即可，
+
+
+micro api 在容器里面启动 报错
+2019/02/22 07:26:55 [ERR] consul.watch: Watch (type: services) errored: Get http://127.0.0.1:8500/v1/catalog/services: dial tcp 127.0.0.1:8500: connect: connection refused, retry in 5s
+2019/02/22 07:26:55 Error listing endpoints Get http://127.0.0.1:8500/v1/catalog/services?stale=: dial tcp 127.0.0.1:8500: connect: connection refused
+2019/02/22 07:26:55 Put http://127.0.0.1:8500/v1/agent/service/register: dial tcp 127.0.0.1:8500: connect: connection refused
+
+加上一个环境变量即可， -e MICRO_REGISTRY=mdns
+
+
+
+
+docker run -d -p 4222:4222 nats
+
