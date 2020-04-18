@@ -1,6 +1,8 @@
 syntax = "proto3";
-option go_package = ".;micropb";
-package micropb;
+option go_package = ".;pb";
+package pb;
+
+import "common.proto";
 
 
 service UserService {
@@ -64,19 +66,6 @@ message Usernames {
 }
 
 
-message Response {
-    int32 code = 1;
-    string msg = 2;
-}
-
-message IdResponse {
-    int32 code = 1;
-    string msg = 2;
-
-    uint32 id = 3;
-}
-
-
 message UserResponse {
     int32 code = 1;
     string msg = 2;
@@ -93,21 +82,5 @@ message UserListResponse {
 }
 
 
-message PageNumPageSize {
-    int32 pageNum = 1;
-    int32 pageSize = 2;
-}
 
 
-message PageMap {
-    int32 pageNum = 1;
-    int32 pageSize = 2;
-    int32 count = 3;
-}
-
-message Token {
-    int32 code = 1;
-    string msg = 2;
-    string token = 3;
-    bool valid = 4;
-}

@@ -1,14 +1,13 @@
 package handler
 
 import (
-	pb "article-service/proto/article"
-	"common/config"
-	"common/config/respcode"
-	"common/model"
 	"context"
+	"gomicrodemo1/common/config"
+	"gomicrodemo1/common/config/respcode"
+	"gomicrodemo1/common/model"
+	"gomicrodemo1/pb/pb"
 	"net/http"
 	"time"
-	userPb "user-service/proto/user"
 )
 
 type Handler struct {
@@ -101,7 +100,7 @@ func (h *Handler) Post(ctx context.Context, req *pb.Article, resp *pb.IdResponse
 
 	value := ctx.Value("userSession")
 
-	user, ok := value.(*userPb.User)
+	user, ok := value.(*pb.User)
 	Log.Info(user, ok)
 	if !ok || user.Id == 0 {
 		resp.Code = respcode.Unauth.Code
@@ -142,7 +141,7 @@ func (h *Handler) Put(ctx context.Context, req *pb.Article, resp *pb.Response) e
 		err error
 	)
 
-	user := ctx.Value("userSession").(*userPb.User)
+	user := ctx.Value("userSession").(*pb.User)
 	if user.Id == 0 {
 		resp.Code = respcode.Unauth.Code
 		resp.Msg = respcode.Unauth.Msg
@@ -169,7 +168,7 @@ func (h *Handler) Put(ctx context.Context, req *pb.Article, resp *pb.Response) e
 
 func (h *Handler) Delete(ctx context.Context, req *pb.Id, resp *pb.Response) error {
 
-	user := ctx.Value("userSession").(*userPb.User)
+	user := ctx.Value("userSession").(*pb.User)
 	if user.Id == 0 {
 		resp.Code = respcode.Unauth.Code
 		resp.Msg = respcode.Unauth.Msg

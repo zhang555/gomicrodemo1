@@ -1,7 +1,7 @@
 package handler
 
 import (
-	"common/model"
+	"gomicrodemo1/common/model"
 	"time"
 )
 

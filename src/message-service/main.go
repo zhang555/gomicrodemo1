@@ -1,12 +1,12 @@
 package main
 
 import (
-	"common/config"
-	"common/db"
+	"gomicrodemo1/common/config"
+	"gomicrodemo1/common/db"
+	"gomicrodemo1/message-service/handler"
+	"gomicrodemo1/message-service/subscriber"
+	pb "gomicrodemo1/pb/pb"
 	"log"
-	"message-service/handler"
-	pb "message-service/proto/message"
-	"message-service/subscriber"
 	"time"
 
 	"github.com/micro/go-micro"

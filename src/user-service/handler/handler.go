@@ -1,15 +1,15 @@
 package handler
 
 import (
-	"common/model"
 	"context"
+	"gomicrodemo1/common/model"
+	"gomicrodemo1/pb/pb"
 	"net/http"
-	pb "user-service/proto/user"
 
 	"github.com/micro/go-micro"
 
-	"common/config"
-	"common/config/respcode"
+	"gomicrodemo1/common/config"
+	"gomicrodemo1/common/config/respcode"
 	"time"
 
 	uuid "github.com/satori/go.uuid"
@@ -190,13 +190,7 @@ func (h *Handler) Auth(ctx context.Context, req *pb.User, resp *pb.Token) error 
 		return nil
 	}
 
-	uuid1, err := uuid.NewV4()
-	if err != nil {
-		Log.Error(err)
-		resp.Code = http.StatusInternalServerError
-		resp.Msg = err.Error()
-		return err
-	}
+	uuid1 := uuid.NewV4()
 	resp.Token = uuid1.String()
 	userLoginHistory.Token = uuid1.String()
 
@@ -204,7 +198,7 @@ func (h *Handler) Auth(ctx context.Context, req *pb.User, resp *pb.Token) error 
 	userLoginHistory.Duration = 3600 * 24
 	userLoginHistory.UserId = userId
 
-	err = DB.Create(&userLoginHistory).Error
+	err := DB.Create(&userLoginHistory).Error
 	if err != nil {
 		Log.Error(err)
 		resp.Code = http.StatusInternalServerError

@@ -1,6 +1,8 @@
 syntax = "proto3";
-option go_package = ".;micropb";
-package micropb;
+option go_package = ".;pb";
+package pb;
+
+import "common.proto";
 
 //import "google/protobuf/timestamp.proto";
 
@@ -36,18 +38,6 @@ message Id {
 }
 
 
-message Response {
-    int32 code = 1;
-    string msg = 2;
-}
-
-message IdResponse {
-    int32 code = 1;
-    string msg = 2;
-
-    uint32 id = 3;
-}
-
 message ArticleResponse {
     int32 code = 1;
     string msg = 2;
@@ -62,15 +52,3 @@ message ArticleListResponse {
     repeated Article articles = 3;
     PageMap page = 4;
 }
-
-message PageNumPageSize {
-    int32 pageNum = 1;
-    int32 pageSize = 2;
-}
-
-message PageMap {
-    int32 pageNum = 1;
-    int32 pageSize = 2;
-    int32 count = 3;
-}
-

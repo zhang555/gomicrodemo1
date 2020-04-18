@@ -1,8 +1,8 @@
 package db
 
 import (
-	"common/log"
 	"fmt"
+	"gomicrodemo1/common/log"
 	"os"
 	"time"
 

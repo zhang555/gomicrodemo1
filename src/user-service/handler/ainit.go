@@ -1,8 +1,8 @@
 package handler
 
 import (
-	"common/db"
-	"common/log"
+	"gomicrodemo1/common/db"
+	"gomicrodemo1/common/log"
 
 	"github.com/jinzhu/gorm"
 	"github.com/sirupsen/logrus"

@@ -1,6 +1,9 @@
 syntax = "proto3";
+option go_package = ".;pb";
 
-package go.micro.srv.message;
+package pb;
+
+import "common.proto";
 
 service MessageService {
     //    rpc Create (User) returns (Response) {
@@ -30,26 +33,4 @@ message MessageListResponse {
     string msg = 2;
     repeated Message messages = 3;
     PageMap page = 4;
-}
-
-message Response {
-    int32 code = 1;
-    string msg = 2;
-}
-
-message IdResponse {
-    int32 code = 1;
-    string msg = 2;
-    uint32 id = 3;
-}
-
-message PageNumPageSize {
-    int32 pageNum = 1;
-    int32 pageSize = 2;
-}
-
-message PageMap {
-    int32 pageNum = 1;
-    int32 pageSize = 2;
-    int32 count = 3;
 }

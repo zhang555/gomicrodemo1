@@ -1,10 +1,9 @@
 package handler
 
 import (
-	"common/config"
-	"common/model"
 	"context"
-	pb "message-service/proto/message"
+	"gomicrodemo1/common/config"
+	"gomicrodemo1/common/model"
 	"net/http"
 	"time"
 )

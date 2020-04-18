@@ -1,11 +1,10 @@
 package subscriber
 
 import (
-	"common/db"
-	"common/log"
-	"common/model"
 	"context"
-	userPb "user-service/proto/user"
+	"gomicrodemo1/common/db"
+	"gomicrodemo1/common/log"
+	"gomicrodemo1/common/model"
 )
 
 type Subscriber struct{}
