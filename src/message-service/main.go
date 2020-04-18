@@ -3,12 +3,13 @@ package main
 import (
 	"common/config"
 	"common/db"
-	"github.com/micro/go-micro"
 	"log"
 	"message-service/handler"
 	pb "message-service/proto/message"
 	"message-service/subscriber"
 	"time"
+
+	"github.com/micro/go-micro"
 )
 
 func main() {

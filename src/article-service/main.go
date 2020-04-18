@@ -6,8 +6,9 @@ import (
 	"article-service/wrapper"
 	"common/config"
 	"common/db"
-	"github.com/micro/go-micro"
 	"log"
+
+	"github.com/micro/go-micro"
 )
 
 func main() {

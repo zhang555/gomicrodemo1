@@ -1,8 +1,8 @@
 package model
 
 import (
-	"time"
 	"fmt"
+	"time"
 )
 
 //type Result struct {

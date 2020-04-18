@@ -14,9 +14,13 @@ It has these top-level messages:
 */
 package protorpc
 
-import proto "github.com/golang/protobuf/proto"
-import json "encoding/json"
-import math "math"
+import (
+	json "encoding/json"
+
+	proto "github.com/golang/protobuf/proto"
+
+	math "math"
+)
 
 // Reference proto, json, and math imports to suppress error if they are not otherwise used.
 var _ = proto.Marshal

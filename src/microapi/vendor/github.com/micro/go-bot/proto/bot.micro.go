@@ -15,13 +15,17 @@ It has these top-level messages:
 */
 package go_micro_bot
 
-import proto "github.com/golang/protobuf/proto"
-import fmt "fmt"
-import math "math"
-
 import (
+	fmt "fmt"
+
+	proto "github.com/golang/protobuf/proto"
+
+	math "math"
+
 	client "github.com/micro/go-micro/client"
+
 	server "github.com/micro/go-micro/server"
+
 	context "context"
 )
 

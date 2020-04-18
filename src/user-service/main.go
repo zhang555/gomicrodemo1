@@ -1,8 +1,9 @@
 package main
 
 import (
-	"github.com/micro/go-micro"
 	"user-service/handler"
+
+	"github.com/micro/go-micro"
 
 	"common/config"
 	"common/db"

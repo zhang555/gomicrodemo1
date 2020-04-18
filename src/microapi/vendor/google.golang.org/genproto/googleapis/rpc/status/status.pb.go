@@ -3,10 +3,15 @@
 
 package status // import "google.golang.org/genproto/googleapis/rpc/status"
 
-import proto "github.com/golang/protobuf/proto"
-import fmt "fmt"
-import math "math"
-import any "github.com/golang/protobuf/ptypes/any"
+import (
+	fmt "fmt"
+
+	proto "github.com/golang/protobuf/proto"
+
+	math "math"
+
+	any "github.com/golang/protobuf/ptypes/any"
+)
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal

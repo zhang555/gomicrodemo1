@@ -3,14 +3,16 @@ package handler
 import (
 	"common/model"
 	"context"
-	"github.com/micro/go-micro"
 	"net/http"
 	pb "user-service/proto/user"
 
+	"github.com/micro/go-micro"
+
 	"common/config"
 	"common/config/respcode"
-	"github.com/satori/go.uuid"
 	"time"
+
+	uuid "github.com/satori/go.uuid"
 )
 
 type Handler struct {

@@ -1,12 +1,13 @@
 package db
 
 import (
-	"github.com/jinzhu/gorm"
-	"os"
-	"fmt"
-	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"common/log"
+	"fmt"
+	"os"
 	"time"
+
+	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
 
 var (

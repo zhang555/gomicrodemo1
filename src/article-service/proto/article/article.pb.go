@@ -5,13 +5,14 @@ package go_micro_srv_article
 
 import (
 	fmt "fmt"
-	proto "github.com/golang/protobuf/proto"
 	math "math"
-)
 
-import (
+	proto "github.com/golang/protobuf/proto"
+
 	client "github.com/micro/go-micro/client"
+
 	server "github.com/micro/go-micro/server"
+
 	context "golang.org/x/net/context"
 )
 

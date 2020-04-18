@@ -4,8 +4,6 @@ import (
 	"runtime"
 	"strings"
 	"time"
-
-	"github.com/hashicorp/go-immutable-radix"
 )
 
 type Label struct {
