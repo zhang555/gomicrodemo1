@@ -1,15 +1,15 @@
 package main
 
 import (
-	"user-service/handler"
+	"gomicrodemo1/pb/micropb"
+	"gomicrodemo1/user-service/handler"
 
 	"github.com/micro/go-micro"
 
-	"common/config"
-	"common/db"
+	"gomicrodemo1/common/config"
+	"gomicrodemo1/common/db"
 	"log"
 	"time"
-	pb "user-service/proto/user"
 )
 
 func main() {
@@ -28,7 +28,7 @@ func run2() {
 	s.Init()
 	publisher := micro.NewPublisher(config.TOPIC_USER_CREATED, s.Client())
 
-	pb.RegisterUserServiceHandler(s.Server(), &handler.Handler{publisher})
+	micropb.RegisterUserServiceHandler(s.Server(), &handler.Handler{publisher})
 
 	if err := s.Run(); err != nil {
 		log.Fatalf("user service error: %v\n", err)

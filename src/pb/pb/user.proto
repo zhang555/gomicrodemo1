@@ -1,0 +1,113 @@
+syntax = "proto3";
+option go_package = ".;micropb";
+package micropb;
+
+
+service UserService {
+    //    rpc Create (User) returns (Response) {
+    //    }
+    rpc GetOne (UserId) returns (UserResponse) {
+    }
+    rpc GetMany (PageNumPageSize) returns (UserListResponse) {
+    }
+    rpc Post (User) returns (IdResponse) {
+    }
+    rpc Put (User) returns (Response) {
+    }
+    rpc Delete (UserId) returns (Response) {
+    }
+
+    rpc Auth (User) returns (Token) {
+    }
+
+    rpc Logout (Token) returns (Response) {
+    }
+
+    rpc ValidateToken (Token) returns (Token) {
+    }
+
+    rpc GetUserSessionByToken (Token) returns (UserResponse) {
+    }
+
+    rpc GetNicknamesByIds (Ids) returns (UserListResponse) {
+    }
+
+}
+
+message User {
+    uint32 id = 1;
+    string username = 2;
+    string nickname = 3;
+    string password = 4;
+    string createTime = 5;
+    string updateTime = 6;
+}
+
+
+message Users {
+    repeated User users = 1;
+}
+
+message UserId {
+    uint32 id = 1;
+}
+
+
+message Ids {
+    repeated uint32 ids = 1;
+}
+
+message Usernames {
+    int32 code = 1;
+    string msg = 2;
+    repeated string username = 3;
+}
+
+
+message Response {
+    int32 code = 1;
+    string msg = 2;
+}
+
+message IdResponse {
+    int32 code = 1;
+    string msg = 2;
+
+    uint32 id = 3;
+}
+
+
+message UserResponse {
+    int32 code = 1;
+    string msg = 2;
+
+    User user = 3;
+}
+
+message UserListResponse {
+    int32 code = 1;
+    string msg = 2;
+
+    repeated User users = 3;
+    PageMap page = 4;
+}
+
+
+message PageNumPageSize {
+    int32 pageNum = 1;
+    int32 pageSize = 2;
+}
+
+
+message PageMap {
+    int32 pageNum = 1;
+    int32 pageSize = 2;
+    int32 count = 3;
+}
+
+message Token {
+    int32 code = 1;
+    string msg = 2;
+    string token = 3;
+    bool valid = 4;
+}
